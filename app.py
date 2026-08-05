@@ -4,7 +4,20 @@ import whisper
 from yt_dlp import YoutubeDL
 
 # 페이지 설정
-st.set_page_config(page_title="음성 & 유튜브 텍스트 변환기 (타임스탬프 포함)", page_icon="🎙️", layout="centered")
+st.set_page_config(
+    page_title="유튜브 및 오디오 AI 텍스트 변환기 (Whisper)",
+    page_icon="🎙️",
+    layout="centered",
+    initial_sidebar_state="expanded",
+)
+
+# 검색로봇이 읽을 수 있는 메인 키워드 소개글 삽입
+st.markdown(
+    """
+    <meta name="description" content="유튜브 URL 링크나 MP3 오디오 파일을 업로드하면 OpenAI Whisper로 타임스탬프 포함 텍스트(.txt) 변환을 무료로 제공하는 웹 서비스입니다.">
+    """,
+    unsafe_allow_html=True,
+)
 
 st.title("🎙️ AI 음성 & 유튜브 텍스트 변환기 (타임스탬프 포함)")
 st.write("오디오 파일을 업로드하거나 유튜브 URL을 입력하면 타임스탬프가 포함된 텍스트로 변환해 줍니다!")
