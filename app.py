@@ -14,8 +14,10 @@ st.set_page_config(
 # 검색로봇이 읽을 수 있는 메인 키워드 소개글 삽입
 st.markdown(
     """
+    <head>
+        <meta name="google-site-verification" content="0-3n9qCf7zo4iz6yc90dRLBX8Iu_8OzOY6dpCEMUb-o">
+    </head>
     <meta name="description" content="유튜브 URL 링크나 MP3 오디오 파일을 업로드하면 OpenAI Whisper로 타임스탬프 포함 텍스트(.txt) 변환을 무료로 제공하는 웹 서비스입니다.">
-    <meta name="google-site-verification" content="0-3n9qCf7zo4iz6yc90dRLBX8Iu_8OzOY6dpCEMUb-o" />
     """,
     unsafe_allow_html=True,
 )
