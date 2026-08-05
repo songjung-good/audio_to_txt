@@ -15,8 +15,8 @@ st.set_page_config(
 st.markdown(
     """
     <meta name="description" content="유튜브 URL 링크나 MP3 오디오 파일을 업로드하면 OpenAI Whisper로 타임스탬프 포함 텍스트(.txt) 변환을 무료로 제공하는 웹 서비스입니다.">
+    <meta name="google-site-verification" content="google7aa728652332ce67">
     """,
-    '<meta name="google-site-verification" content="google7aa728652332ce67.html">',
     unsafe_allow_html=True,
 )
 
