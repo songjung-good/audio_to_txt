@@ -1,7 +1,42 @@
 import os
+import shutil
 import streamlit as st
 import whisper
 from yt_dlp import YoutubeDL
+
+def setup_ffmpeg():
+    """ffmpeg 경로를 탐색하고 환경 변수에 자동 등록"""
+    system_ffmpeg = shutil.which("ffmpeg")
+    if system_ffmpeg:
+        return system_ffmpeg
+
+    for path in ["/opt/homebrew/bin/ffmpeg", "/usr/local/bin/ffmpeg"]:
+        if os.path.exists(path):
+            ffmpeg_dir = os.path.dirname(path)
+            if ffmpeg_dir not in os.environ.get("PATH", ""):
+                os.environ["PATH"] = ffmpeg_dir + os.pathsep + os.environ.get("PATH", "")
+            return path
+
+    try:
+        import imageio_ffmpeg
+        ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
+        if ffmpeg_exe and os.path.exists(ffmpeg_exe):
+            ffmpeg_dir = os.path.dirname(ffmpeg_exe)
+            link_path = os.path.join(ffmpeg_dir, "ffmpeg")
+            if not os.path.exists(link_path):
+                try:
+                    os.symlink(ffmpeg_exe, link_path)
+                except Exception:
+                    pass
+            if ffmpeg_dir not in os.environ.get("PATH", ""):
+                os.environ["PATH"] = ffmpeg_dir + os.pathsep + os.environ.get("PATH", "")
+            return ffmpeg_exe
+    except Exception:
+        pass
+
+    return None
+
+setup_ffmpeg()
 
 # 페이지 설정
 st.set_page_config(
